@@ -6,7 +6,7 @@ $("<div>", {id: "map"}).addClass("map").appendTo("body");
 
 const map = L.map("map", {
     minZoom: 3,
-    maxZoom: 4,
+    maxZoom: 8,
     maxBounds: [ [-90,-361], [90, 361] ],
 });
 
@@ -20,8 +20,6 @@ map.setView([30, 120], 2);
 
 
 
-
-
-return L;
+return map;
 //////////////////////////////////////////////////////////////////////////////    
 });

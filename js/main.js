@@ -7,18 +7,21 @@ requirejs.config({
 
 require([
     "map.init",
+    
+    "map.china",
+    "lib/jquery.marquee"
 ], function(
-    L
+    map 
 ){
 //////////////////////////////////////////////////////////////////////////////
 
-    $(function(){
-    console.log("***", L);
+$(function(){
+
+    $(".headline-marquee").marquee();
 
 
 
-
-    });
+});
 
 //////////////////////////////////////////////////////////////////////////////
 });
