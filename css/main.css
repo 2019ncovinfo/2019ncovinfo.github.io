@@ -1,0 +1,63 @@
+#map{
+    position: fixed;
+    left: 0; top: 0; right: 0; bottom: 0;
+    z-index: 0;
+}
+
+.leaflet-control-attribution,.leaflet-control-zoom {
+    display: none;
+}
+
+.bottom-container{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5em;
+    z-index: 1000;
+    background: #FFFFFF;
+}
+
+.bottom-center {
+    background: #111111;
+    position: relative;
+    display: inline-block;
+    left: 25%;
+    right: 25%;
+    height: 95%;
+    width: 50%;
+    border-radius: 5px;
+    margin: 2px;
+
+}
+
+.bottom-cell-center {
+    background: black;
+    position: relative;
+    display: inline-block;
+    left: 33%;
+    right: 33%;
+    height: 96%;
+    width: 34%;
+    border-radius: 10px;
+    border: #999999 2px solid;
+    color: white;
+    line-height: 4em;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+
+
+.news-headline {
+    position: fixed;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    height: 4em;
+    z-index: 1000;
+    background: rgb(255,255,255, 0.6);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
