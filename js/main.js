@@ -2,6 +2,7 @@ requirejs.config({
     baseUrl: "/js/",
     paths: {
         leaflet: "lib/leaflet",
+        eventemitter: "lib/eventemitter",
     }
 });
 
