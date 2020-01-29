@@ -10,9 +10,9 @@ require([
     "map.init",
     
     "map.china",
+    "display.data",
     "lib/jquery.marquee"
 ], function(
-    map 
 ){
 //////////////////////////////////////////////////////////////////////////////
 

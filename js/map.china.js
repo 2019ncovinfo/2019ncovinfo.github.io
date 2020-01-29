@@ -2,7 +2,7 @@ define([
     "leaflet",
     "eventemitter",
     "map.init",
-    "data.china"
+    "data.china.geojson"
 ], function(
     L,
     EventEmitter,
