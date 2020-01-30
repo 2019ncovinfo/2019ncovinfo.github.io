@@ -1,22 +1,3 @@
-(function(){
-
-function locateDate(array, date){
-    // returns index, where array[i] is immediate next to date
-    date = date.getTime() / 3600000;
-    var start = array[0].time[1];
-    if(array.length == 1) return 0;
-    for(var i=1; i<array.length; i++){
-        if(start <= date && array[i].time[1] > date){
-            return i-1;
-        }
-        start = array[i].time[1];
-    }
-    return i;
-}
-
-
-
-
 define([
     "data.china.struct",
     "report.parser"
@@ -66,15 +47,39 @@ fixes.forEach(function(fix){
 console.log(regionData);
 
 
-function getStatistic(date, region){
-        
-
+function findNearestIn(date, dataSeries){
+    date = date.getTime() / 3600000;
+    const hours = [];
+    const diffs = [];
+    var min = 9999999;
+    for(var time in dataSeries){
+        hours.push(time);
+        if(date >= time){
+            diffs.push(date - time);
+            if(date-time < min) min = date - time;
+        } else {
+            diffs.push(0);
+        }
+    }
+    var i = hours[diffs.indexOf(min)];
+    return dataSeries[i];
 }
 
+
+
+function getStatistic(date, region){
+    const targetDataSeries = regionData[region];
+    if(!targetDataSeries) return {unknown: true, infected: 0, death: 0};
+
+    return {
+        infected: findNearestIn(date, targetDataSeries["infected"]), 
+        death: findNearestIn(date, targetDataSeries["death"]),
+    }
+}
+
+console.log(getStatistic(new Date(), "CN42"));
 
 
 return getStatistic;
 //////////////////////////////////////////////////////////////////////////////
 });
-
-})();

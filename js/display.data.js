@@ -24,8 +24,11 @@ for(var province in CHINASTRUCT.prefix){
 
 
 regionSelector.on("region-selected", function(regionId){
+    var statistic = getStatistic(new Date(), regionId);
+    console.log(regionId, statistic);
     $("#var-region").text(province2name[regionId]);
-    console.log(regionId);
+    $("#var-death").text(statistic.unknown ? "---" : statistic.death);
+    $("#var-infected").text(statistic.unknown ? "---" : statistic.infected);
 });
 
 

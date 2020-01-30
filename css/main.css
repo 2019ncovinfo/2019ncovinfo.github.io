@@ -114,3 +114,17 @@
     font-family: sans-serif;
     font-size: 1.25em;
 }
+
+#var-infected,#var-death {
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+#var-infected{
+    text-align: right;
+    color: red;
+}
+
+#var-death{
+    color: white;
+}
