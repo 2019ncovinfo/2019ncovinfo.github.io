@@ -38,7 +38,7 @@ function parsedate(spec){
 
         rangespec[i] = new Date(
             "2020-" + zerojust2(result[1]) + "-" + zerojust2(result[2]) +
-            "T" + zerojust2(hour) + ":00+08:00");
+            "T" + zerojust2(hour) + ":00+08:00").getTime() / 3600000; // hours
     }
     
     if(rangespec.length == 1){
@@ -58,6 +58,8 @@ function parsemarker(spec){
     }
     return {
         region: result[2],
+        regionId: (result[2] == '全国' ? "CN" : CHINASTRUCT.prefix[result[2]]), 
+
         sum: result[4] == "累计",
         delta: result[4] == "新增",
         infected: result[6] == "确诊",
@@ -67,12 +69,44 @@ function parsemarker(spec){
 }
 
 function parsecity(region, spec){
-    const provinceDef = CHINASTRUCT.struct[region];
+    const subregionDef = (region == "全国" ? CHINASTRUCT.prefix : CHINASTRUCT.struct[region]);
     const result = /([^0-9]+)(\d+)\s?例/.exec(spec);
     if(!result){
-        throw Error("无法理解城市: " + spec);
+        throw Error("无法理解下属地区: " + spec);
     }
-    return { subregion: result[1].trim(), number: parseInt(result[2], 10) };
+    var cityspec = result[1].trim();
+    var regionId = null;
+    var ignore = false;
+
+    if(!subregionDef[cityspec]){
+        var shortspec = cityspec;
+        var found = false;
+        for(var i=1; i<=2; i++){
+            shortspec = shortspec.slice(0,-1);
+            found = false;
+            for(var j in subregionDef){
+                if(j.slice(0,shortspec.length) == shortspec){
+                    found = true;
+                    break;
+                }
+            }
+            if(found) break;
+        }
+        if(found){
+            cityspec = shortspec;
+        } else {
+            ignore = true;
+            console.warn("找不到城市: " + cityspec);
+        }
+    }
+    if(!ignore) regionId = subregionDef[cityspec];
+
+    return {
+        ignore: ignore,
+        region: result[1].trim(),
+        number: parseInt(result[2], 10),
+        regionId: regionId,
+    };
 }
 
 
@@ -93,8 +127,13 @@ function parseline(line){
         details[i] = parsecity(markerspec.region, details[i].trim());
     }
 
+    if(datespec[0] == false){
+        // by default, time range - 24
+        datespec[0] = datespec[1] - 24
+    }
+
     return {
-        time: datespec,
+        time: datespec, // hours since epoch, [start, end]
         summary: markerspec,
         details: details,
     }
@@ -111,13 +150,6 @@ plainReports.split("\n").forEach(function(l){
 });
 
 
-console.log(allReports);
-
-function getStatistic(date){
-    // Get statistic for given date.
-}
-
-
-return getStatistic;
+return allReports;
 //////////////////////////////////////////////////////////////////////////////
 });

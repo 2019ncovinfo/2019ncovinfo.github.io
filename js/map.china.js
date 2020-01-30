@@ -55,7 +55,7 @@ function onRegionClicked(clickedFeature){
 
     if(zoomLevel <= 3){
         filterRegionId = filterRegionId.slice(0, 2); // e.g. CN, country
-    } else if (zoomLevel <= 5){
+    } else if (true || zoomLevel <= 5){ // disable city selection, minimal province
         filterRegionId = filterRegionId.slice(0, 4); //      CN42, province
     }                                                //      CN42.., city
     

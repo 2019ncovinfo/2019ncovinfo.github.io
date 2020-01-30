@@ -1,6 +1,6 @@
 define([
     "map.china",
-    "report.parser",
+    "report.calculator",
 ], function(
     mapOperator,
     getStatistic
