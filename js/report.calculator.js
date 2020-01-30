@@ -77,8 +77,6 @@ function getStatistic(date, region){
     }
 }
 
-console.log(getStatistic(new Date(), "CN42"));
-
 
 return getStatistic;
 //////////////////////////////////////////////////////////////////////////////

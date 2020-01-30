@@ -11,14 +11,13 @@ require([
     
     "map.china",
     "display.data",
-    "lib/jquery.marquee"
+    "display.news",
 ], function(
 ){
 //////////////////////////////////////////////////////////////////////////////
 
 $(function(){
 
-    $(".headline-marquee").marquee();
 
 
 
