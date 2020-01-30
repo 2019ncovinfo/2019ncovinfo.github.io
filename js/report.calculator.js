@@ -72,8 +72,8 @@ function getStatistic(date, region){
     if(!targetDataSeries) return {unknown: true, infected: 0, death: 0};
 
     return {
-        infected: findNearestIn(date, targetDataSeries["infected"]), 
-        death: findNearestIn(date, targetDataSeries["death"]),
+        infected: findNearestIn(date, targetDataSeries["infected"]) || 0, 
+        death: findNearestIn(date, targetDataSeries["death"]) || 0,
     }
 }
 
