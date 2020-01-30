@@ -113,10 +113,6 @@ map.on("click", function(e){
 });
 
 
-mapSelectorEventEmitter.on("region-selected", function(e){
-    console.log(e);
-});
-
 return {
     regionSelector: mapSelectorEventEmitter,
     painter: null,
