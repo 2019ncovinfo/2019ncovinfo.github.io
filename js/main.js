@@ -1,8 +1,10 @@
 requirejs.config({
     baseUrl: "/js/",
     paths: {
-        leaflet: "lib/leaflet",
         eventemitter: "lib/eventemitter",
+    },
+    shim: {
+        "leaflet": ["lib/leaflet", "lib/leaflet.heat"],
     }
 });
 
@@ -10,7 +12,7 @@ require([
     "map.init",
     
     "map.china",
-    "display.data",
+    "display.number",
     "display.news",
 ], function(
 ){

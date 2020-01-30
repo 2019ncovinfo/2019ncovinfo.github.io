@@ -1,20 +1,30 @@
 define([
-    "leaflet",
     "eventemitter",
     "map.init",
-    "data.china.geojson"
+    "data.china.geojson",
 ], function(
-    L,
     EventEmitter,
     map,
     CHINA
 ){
+
 //////////////////////////////////////////////////////////////////////////////
+
+const heatmap = L.heatLayer([], {
+    radius: 8,
+    blur: 5,
+    gradient: {
+        0.1: "#AA0000",
+        0.9: "#FF0000",
+    }
+}).addTo(map); // first adds, goes to bottom
+
 
 const mapSelectorEventEmitter = new EventEmitter();
 
 const provinces = {};
 const regionFilterCallbacks = [];
+const regionsAsFeaturesById = {};
 
 function regionFilterFactory(id, target){
     /* Generates a listener on filter actions. When this listener is called
@@ -86,6 +96,7 @@ function bindEventsToFeature(feature, layer){
 for(var provinceId in CHINA){
     CHINA[provinceId].features.forEach(function(feature){
         feature.properties.id = "CN" + feature.properties.id.toString();
+        regionsAsFeaturesById[feature.properties.id] = feature;
     });
     provinces[provinceId] = L.geoJSON(CHINA[provinceId], {
         onEachFeature: bindEventsToFeature,
@@ -114,8 +125,10 @@ map.on("click", function(e){
 
 
 return {
-    regionSelector: mapSelectorEventEmitter,
-    painter: null,
+    regionSelector: mapSelectorEventEmitter, // events emitter
+    heatmap: heatmap,                        // heatmap layer to play with
+    regionsAsFeaturesById: regionsAsFeaturesById,
+                        // look up dict for region features(GeoJSON objects)
 }
 //////////////////////////////////////////////////////////////////////////////
 });
