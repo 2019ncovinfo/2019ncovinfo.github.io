@@ -1,3 +1,15 @@
+function decideMagnitude(n){
+    if(n < 2) return 0.1;
+    else if(n < 10) return 0.3;
+    else if(n < 20) return 0.5;
+    else if(n < 50) return 0.7;
+    else return 1.0;
+
+}
+
+
+
+
 define([
     "data.china.struct",
     "map.china",
@@ -9,12 +21,19 @@ define([
 ){
 //////////////////////////////////////////////////////////////////////////////
 
-const numbersInRegions = {};
-for(var k in mapOperator.regionsAsFeaturesById){
-    numbersInRegions[k] = 0;
-}
+const regionsAsFeaturesById = mapOperator.regionsAsFeaturesById;
 
-console.log(mapOperator.regionsAsFeaturesById);
+const numbersInRegions = {};
+
+function updateAtomRegionNumbers(date){
+    for(var k in mapOperator.regionsAsFeaturesById){
+        numbersInRegions[k] = getStatistic(date, k);
+    }
+}
+updateAtomRegionNumbers(new Date());
+
+//console.log(mapOperator.regionsAsFeaturesById);
+//console.log(numbersInRegions);
 
 
 
@@ -57,8 +76,24 @@ regionSelector.on("region-selected", function(regionId){
 
 refresh();
 
-heatmap.addLatLng([10,100,0.5]); // test
-heatmap.addLatLng([12,100,0.8]); // test
+
+var latlng = [];
+for(var k in numbersInRegions){
+    if(k.length <= 5) continue;
+    const region = regionsAsFeaturesById[k];
+    const number = numbersInRegions[k].infected;
+
+    if(region.properties.cp){
+        latlng = region.properties.cp;
+    } else {
+        continue;
+        latlng = region.geometry.coordinates[0][0];
+    }
+
+    if(!number) continue;
+    console.log(number, decideMagnitude(number));
+    heatmap.addLatLng([latlng[1],latlng[0],decideMagnitude(number)]);
+}
 
 //////////////////////////////////////////////////////////////////////////////
 });

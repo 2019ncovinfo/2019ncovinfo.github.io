@@ -44,7 +44,7 @@ fixes.forEach(function(fix){
     });
 });
 
-console.log(regionData);
+//console.log(regionData);
 
 
 function findNearestIn(date, dataSeries){
@@ -66,15 +66,32 @@ function findNearestIn(date, dataSeries){
 }
 
 
+const CNProvinceIDs = [];
+for(var i in CHINASTRUCT.prefix) CNProvinceIDs.push(CHINASTRUCT.prefix[i]);
 
 function getStatistic(date, region){
-    const targetDataSeries = regionData[region];
-    if(!targetDataSeries) return {unknown: true, infected: 0, death: 0};
-
-    return {
-        infected: findNearestIn(date, targetDataSeries["infected"]) || 0, 
-        death: findNearestIn(date, targetDataSeries["death"]) || 0,
+    var regions = [];
+    if(region.length == 2){
+        if(region == "CN"){
+            regions = CNProvinceIDs;
+        } else {
+            return {unknown: true, infected: 0, death: 0};
+        }
+    } else {
+        regions = [region];
     }
+
+    var infected = 0, death = 0;
+    regions.forEach(function(eachRegion){
+        if(!regionData[eachRegion]){
+            console.debug(eachRegion, "not found");
+            return;
+        }
+        infected += findNearestIn(date, regionData[eachRegion].infected) || 0;
+        death += findNearestIn(date, regionData[eachRegion].death) || 0;
+    });
+
+    return { infected: infected, death: death }
 }
 
 
