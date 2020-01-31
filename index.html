@@ -11,8 +11,6 @@
 
     <script src="/js/require.js" data-main="/js/main"></script>
 
-    <link rel="stylesheet" href="/css/jquery-ui.css">
-    <link rel="stylesheet" href="/css/jquery-ui.theme.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/leaflet.css">
 
@@ -24,6 +22,8 @@
     </div>
 
     <div class="bottom-container">
+        <button class="bottom-left" id="disease-overlay-open">疾病概况</button>
+
         <div class="bottom-center">
 
             <div class="bottom-cell-left">
@@ -43,12 +43,52 @@
             </div>
 
         </div>
+
+        <button class="bottom-right">世界概况</button>
     </div>
 
     <div id="news-headline" class="news-headline">
         <div class="headline-icon"><span class="bar">新闻</span></div>
-        <div class="headline-marquee">testtesttest</div>
+        <div class="headline-marquee"></div>
     </div>
+
+    
+    <div id="disease-overlay"><div class="red-overlay" id="tabs">
+        <ul>
+            <li><a href="#disease-tab-1">疾病概况</a></li>
+            <li><a href="#tabs-2">传播途径</a></li>
+            <li><a href="#tabs-3">发病症状</a></li>
+            <li style="flex-grow:0.3"><a id="disease-overlay-close">X</a></li>
+        </ul>
+        <div id="disease-tab-1">
+            <h1>2019-nCoV</h1>
+
+            <div class="disease-tab-1-blackbox">
+                <div>开始地点</div>
+                <div style="font-weight:bold">中国湖北省武汉市</div>
+                <div>开始日期</div>
+                <div style="font-weight:bold">2019年12月26日</div>
+            </div>
+            
+            <img src="/images/virus.gif" class="disease-tab-1-virus"></img>
+      
+      
+      
+        </div>
+      
+      <div id="tabs-2">
+        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+      </div>
+      <div id="tabs-3">
+        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+        <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+      </div>
+    
+
+
+    </div></div>
+
+
 
 </body>
 </html>

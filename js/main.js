@@ -20,7 +20,10 @@ require([
 
 $(function(){
 
+    $("#tabs").tabs();
 
+    $("#disease-overlay-open").click(()=>$("#disease-overlay").show());
+    $("#disease-overlay-close").click(()=>$("#disease-overlay").hide());
 
 
 });

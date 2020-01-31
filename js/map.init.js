@@ -1,5 +1,8 @@
 define([], function(){
 //////////////////////////////////////////////////////////////////////////////    
+const DEBUG = (window.location.hostname == "localhost");
+
+
 
 $("<div>", {id: "map"}).addClass("map").appendTo("body");
 
@@ -14,7 +17,7 @@ const map = L.map("map", {
 var tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 });
 
-tiles.addTo(map);
+if(!DEBUG || true) tiles.addTo(map);
 
 map.setView([30, 120], 3);
 

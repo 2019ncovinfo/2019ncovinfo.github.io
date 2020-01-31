@@ -17,16 +17,26 @@
     right: 0;
     height: 5em;
     z-index: 1000;
+    display: flex;
 }
 
+.bottom-left,.bottom-right{
+    flex-grow: 1;
+    border-radius: 8px;
+    border: 1px solid white;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: linear-gradient(#FFFFFF, #CCCCCC);
+}
+.bottom-left { color: #AA0000 } .bottom-right { color: #2288FF }
+
 .bottom-center {
-    background: #111111;
+    flex-grow: 1.8;
+    border: 1px solid #222;
+    background: linear-gradient(#aaa, #222 25%, #000);
     position: relative;
     display: flex;
-    left: 25%;
-    right: 25%;
     height: 95%;
-    width: 50%;
     border-radius: 8px;
     margin: 2px;
 
@@ -48,6 +58,7 @@
     line-height: 4em;
     text-align: center;
     font-size: 1.2em;
+    background: linear-gradient(#aaa, #111 15%, #000);
 }
 
 .bottom-cell-caption {
@@ -127,4 +138,85 @@
 
 #var-death{
     color: white;
+}
+
+/****************************************************************************/
+
+#disease-overlay {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    background-image: url("/images/background.mosaic.png");
+    background-repeat: repeat;
+    left: 0; right: 0; top: 0; bottom: 0;
+}
+#disease-overlay .red-overlay{
+    position: relative;
+    width: 100%; height: 100%;
+    background-color: rgb(60,0,0,0.8);
+    padding-top: 1em;
+}
+
+.disease-tab-1-virus {
+    position:absolute; right:20%; top:30%;
+    height: 45%;
+    width: auto;
+}
+
+.ui-tabs .ui-tabs-nav{
+    /*background: white;*/
+    border-radius: 8px;
+}
+
+.ui-tabs-nav {
+    flex-grow: 1;
+    display: flex;
+    margin: 0 1em 0 1em;
+    height: 4em;
+    background: white;
+}
+
+
+.ui-tabs-nav {padding: 0}
+.ui-tabs-nav li{
+    font-size: 1.5em;
+    border-radius: 8px;
+    flex-grow: 1;
+    list-style:none;
+    line-height: 2.8em;
+    margin: 0;
+    text-align: center;
+}
+.ui-tabs-nav li.ui-tabs-active{
+    background-color: #990000;
+}
+
+.ui-tabs-nav a{
+    color: #AA0000;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 2px 2px white;
+}
+
+.ui-tabs-nav li.ui-tabs-active a{
+    color: white; text-shadow: 2px 2px black;
+}
+
+#disease-tab-1 {
+    font-family: sans-serif;
+    padding: 1em 3em 1em 3em;
+}
+
+#disease-tab-1 h1{
+    color: #EEE;
+    font-size: 2.5em;
+}
+
+.disease-tab-1-blackbox {
+    background: rgb(0,0,0,0.7);
+    font-size: 1.5em;
+    color: white;
+    width: 30%;
+    padding: 0.5em 1em 0.5em 1em;
 }
