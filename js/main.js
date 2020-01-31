@@ -5,7 +5,8 @@ requirejs.config({
     },
     shim: {
         "leaflet": ["lib/leaflet", "lib/leaflet.heat"],
-    }
+    },
+    waitSeconds: 30,
 });
 
 require([
