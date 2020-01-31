@@ -1,4 +1,4 @@
-define([], function(){ return `
+const NEWS_UNCOMPILED = `
 
 
 2020-01-29T03:40:04+00:00 文在寅：愿协助防控，将提供200万个口罩、10万件防护服
@@ -247,4 +247,4 @@ define([], function(){ return `
 
 
 
-`;}); // 2020-01-31T14:08Z
+`; // 2020-01-31T14:08Z

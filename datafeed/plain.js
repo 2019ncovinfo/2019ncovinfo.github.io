@@ -1,4 +1,4 @@
-define([], function(){return `
+const STAT_UNCOMPILED = `
 
 
 1月23日0时—1月23日23时，江西省新增确诊4例，其中南昌市1例、吉安市1例、九江市1例、新余市1例
@@ -552,4 +552,4 @@ define([], function(){return `
 
 
 
-`}); // 2020-01-31T14:08Z
+`; // 2020-01-31T14:08Z

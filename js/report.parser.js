@@ -1,10 +1,7 @@
 define([
     "data.china.struct",
-    "../datafeed/plain",
 ], function(
-    CHINASTRUCT,
-
-    plainReports
+    CHINASTRUCT
 ){
 //////////////////////////////////////////////////////////////////////////////
 /* A near natural language report parser.
@@ -143,7 +140,7 @@ function parseline(line){
 // ---------------------------------------------------------------------------
 
 const allReports = [];
-plainReports.split("\n").forEach(function(l){
+STAT_UNCOMPILED.split("\n").forEach(function(l){
     l = l.trim();
     if(!l) return;
     allReports.push(parseline(l));

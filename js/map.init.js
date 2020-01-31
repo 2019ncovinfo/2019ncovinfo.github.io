@@ -14,10 +14,13 @@ const map = L.map("map", {
     maxBounds: [ [-90,-361], [90, 361] ],
 });
 
-var tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-});
 
-if(!DEBUG || true) tiles.addTo(map);
+setTimeout(function(){
+    var tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    });
+    tiles.addTo(map);
+    
+}, 100);
 
 map.setView([30, 120], 3);
 

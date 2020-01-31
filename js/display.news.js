@@ -1,13 +1,10 @@
 define([
-    "../datafeed/news",
     "lib/jquery.marquee"
-], function(
-    newstext
-){
+], function(){
 //////////////////////////////////////////////////////////////////////////////
 const allNews = [];
 
-newstext.split(/\-{20,40}/).forEach(function(news){
+NEWS_UNCOMPILED.split(/\-{20,40}/).forEach(function(news){
     
     var lines = news.trim().split("\n");
     var headline = lines[0], body = lines.slice(1).join("\n").trim();
