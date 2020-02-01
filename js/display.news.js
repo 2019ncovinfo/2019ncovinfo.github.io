@@ -24,10 +24,35 @@ allNews.sort((a,b)=>(b.date.getTime() > a.date.getTime()));
 
 
 function rotateNews(){
-    
-    var pick = allNews[Math.floor(Math.random() * allNews.length)];
+    const nowtime = new Date().getTime();
+    var pickList = [];
+    var weightSum = 0, weight = 1, timeDiff = 0, pickWeight=0;
+    for(var i in allNews){
+        timeDiff = (nowtime - allNews[i].date.getTime()) / 3600000; // hrs
+        if(timeDiff > 24 || timeDiff < 0) continue;
+        weight = 1;
+        if(timeDiff < 12){
+            weight = 2;
+        } else if(timeDiff < 6) {
+            weight = 4;
+        } else if(timeDiff < 3){
+            weight = 8;
+        }
+        weightSum += weight;
+        pickList.push([i, weightSum]);
+    }
+    pickList.sort((a,b)=>(a[1] < b[1]));
 
-    $(".headline-marquee").text(pick.title).marquee();
+    if(pickList.length > 0){
+        pickWeight = Math.random() * weightSum;
+        for(var i=0; i<pickList.length; i++){
+            if(pickList[i][1] > pickWeight) break;
+        }
+        var pick = allNews[pickList[i][0]]; 
+        $(".headline-marquee").text(pick.title).marquee();
+    } else {
+        $(".headline-marquee").text("")
+    }
 
 };
 
